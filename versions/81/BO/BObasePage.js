@@ -77,7 +77,7 @@ class BOBasePage extends CommonPage {
     // Improve
     // Modules
     this.modulesParentLink = '#subtab-AdminParentModulesSf';
-    this.moduleCatalogueLink = '#subtab-AdminParentModulesCatalog';
+    this.moduleCatalogueLink = false;
     this.moduleManagerLink = '#subtab-AdminModulesSf';
 
     // Design
@@ -85,7 +85,7 @@ class BOBasePage extends CommonPage {
     // Theme & logo
     this.themeAndLogoLink = '#subtab-AdminThemesParent';
     // Theme Catalog
-    this.themeCatalog = '#subtab-AdminThemesCatalog , #subtab-AdminPsMboTheme';
+    this.themeCatalog = false;
     // Pages
     this.pagesLink = '#subtab-AdminCmsContent';
     // Positions

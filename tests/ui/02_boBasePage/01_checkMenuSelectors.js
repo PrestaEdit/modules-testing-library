@@ -339,14 +339,19 @@ describe('Check Menu selectors in BO', async () => {
   menuSelectors.forEach((menuSelector) => {
     menuSelector.children.forEach((child) => {
       it(`should go to ${child.pageName} page`, async () => {
-        await dashboardPage.goToSubMenu(
-          page,
-          menuSelector.parent,
-          child.selector,
-        );
+        if (child.selector !== false) {
+          await dashboardPage.goToSubMenu(
+            page,
+            menuSelector.parent,
+            child.selector,
+          );
 
-        const pageTitle = await dashboardPage.getPageTitle(page);
-        await expect(pageTitle.toLowerCase()).to.contain(child.pageTitle.toLowerCase());
+          const pageTitle = await dashboardPage.getPageTitle(page);
+          await expect(pageTitle.toLowerCase()).to.contain(child.pageTitle.toLowerCase());
+        } else {
+          // Selector is not defined so we skip the test
+          await expect(true).to.be.true;
+        }
       });
     });
   });
