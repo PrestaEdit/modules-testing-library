@@ -50,10 +50,6 @@ describe(`Check PS version ${global.PS_VERSION} with ${global.LOCALE} language, 
 
     // Get error displayed
     const errorMessage = await loginPage.getLoginError(page);
-
-    console.log('test');
-    console.log(errorMessage);
-    console.log(loginPage.loginErrorText);
     await expect(errorMessage).to.contain(loginPage.loginErrorText);
   });
 
