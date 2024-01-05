@@ -21,6 +21,13 @@ global.FO = {
  */
 global.PS_VERSION = process.env.PS_VERSION || '1.7.7';
 
+/**
+ * @global
+ * @desc PrestaShop version to test (minor version)
+ * @default 1.7.7
+ * @type {string}
+ */
+global.LOCALE = process.env.LOCALE || 'EN';
 
 /**
  * @namespace BO

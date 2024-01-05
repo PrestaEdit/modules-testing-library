@@ -1,5 +1,6 @@
 require('module-alias/register');
 
+const i18n = require('i18n');
 const {expect} = require('chai');
 const helper = require('@utils/helpers');
 
@@ -21,23 +22,23 @@ const menuSelectors = [
     parent: dashboardPage.ordersParentLink,
     children: [
       {
-        pageName: 'Orders',
+        pageName: i18n.__('Orders'),
         selector: dashboardPage.ordersLink,
       },
       {
-        pageName: 'Invoices',
+        pageName: i18n.__('Invoices'),
         selector: dashboardPage.invoicesLink,
       },
       {
-        pageName: 'Credit Slips',
+        pageName: i18n.__('Credit Slips'),
         selector: dashboardPage.creditSlipsLink,
       },
       {
-        pageName: 'Delivery Slips',
+        pageName: i18n.__('Delivery Slips'),
         selector: dashboardPage.deliverySlipslink,
       },
       {
-        pageName: 'Shopping Carts',
+        pageName: i18n.__('Shopping Carts'),
         selector: dashboardPage.shoppingCartsLink,
       },
     ],
@@ -46,31 +47,31 @@ const menuSelectors = [
     parent: dashboardPage.catalogParentLink,
     children: [
       {
-        pageName: 'Products',
+        pageName: i18n.__('Products'),
         selector: dashboardPage.productsLink,
       },
       {
-        pageName: 'Categories',
+        pageName: i18n.__('Categories'),
         selector: dashboardPage.categoriesLink,
       },
       {
-        pageName: 'Monitoring',
+        pageName: i18n.__('Monitoring'),
         selector: dashboardPage.monitoringLink,
       },
       {
-        pageName: 'Brands',
+        pageName: i18n.__('Brands'),
         selector: dashboardPage.brandsAndSuppliersLink,
       },
       {
-        pageName: 'Files',
+        pageName: i18n.__('Files'),
         selector: dashboardPage.filesLink,
       },
       {
-        pageName: 'Cart Rules',
+        pageName: i18n.__('Cart Rules'),
         selector: dashboardPage.discountsLink,
       },
       {
-        pageName: 'Stock',
+        pageName: i18n.__('Stock'),
         selector: dashboardPage.stocksLink,
       },
     ],
@@ -79,11 +80,11 @@ const menuSelectors = [
     parent: dashboardPage.customersParentLink,
     children: [
       {
-        pageName: 'Customers',
+        pageName: i18n.__('Customers'),
         selector: dashboardPage.customersLink,
       },
       {
-        pageName: 'Addresses',
+        pageName: i18n.__('Addresses'),
         selector: dashboardPage.addressesLink,
       },
     ],
@@ -92,15 +93,15 @@ const menuSelectors = [
     parent: dashboardPage.customerServiceParentLink,
     children: [
       {
-        pageName: 'Customer Service',
+        pageName: i18n.__('Customer Service'),
         selector: dashboardPage.customerServiceLink,
       },
       {
-        pageName: 'Order Messages',
+        pageName: i18n.__('Order Messages'),
         selector: dashboardPage.orderMessagesLink,
       },
       {
-        pageName: 'Merchandise Returns',
+        pageName: i18n.__('Merchandise Returns'),
         selector: dashboardPage.merchandiseReturnsLink,
       },
     ],
@@ -109,11 +110,11 @@ const menuSelectors = [
     parent: dashboardPage.modulesParentLink,
     children: [
       {
-        pageName: 'Manage',
+        pageName: i18n.__('Manage'),
         selector: dashboardPage.moduleManagerLink,
       },
       {
-        pageName: 'Modules catalog',
+        pageName: i18n.__('Modules catalog'),
         selector: dashboardPage.moduleCatalogueLink,
       },
     ],
@@ -122,23 +123,23 @@ const menuSelectors = [
     parent: dashboardPage.designParentLink,
     children: [
       {
-        pageName: 'Theme & Logo',
+        pageName: i18n.__('Theme & Logo'),
         selector: dashboardPage.themeAndLogoLink,
       },
       {
-        pageName: 'Theme',
+        pageName: i18n.__('Theme'),
         selector: dashboardPage.themeCatalog,
       },
       {
-        pageName: 'Pages',
+        pageName: i18n.__('Pages'),
         selector: dashboardPage.pagesLink,
       },
       {
-        pageName: 'Positions',
+        pageName: i18n.__('Positions'),
         selector: dashboardPage.positionsLink,
       },
       {
-        pageName: 'Image Settings',
+        pageName: i18n.__('Image Settings'),
         selector: dashboardPage.imageSettingsLink,
       },
     ],
@@ -147,11 +148,11 @@ const menuSelectors = [
     parent: dashboardPage.shippingParentLink,
     children: [
       {
-        pageName: 'Carriers',
+        pageName: i18n.__('Carriers'),
         selector: dashboardPage.carriersLink,
       },
       {
-        pageName: 'Preferences',
+        pageName: i18n.__('Preferences'),
         selector: dashboardPage.shippingPreferencesLink,
       },
     ],
@@ -160,11 +161,11 @@ const menuSelectors = [
     parent: dashboardPage.paymentParentLink,
     children: [
       {
-        pageName: 'Payment Methods',
+        pageName: i18n.__('Payment Methods'),
         selector: dashboardPage.paymentMethodsLink,
       },
       {
-        pageName: 'Preferences',
+        pageName: i18n.__('Preferences'),
         selector: dashboardPage.paymentPreferencesLink,
       },
     ],
@@ -173,19 +174,19 @@ const menuSelectors = [
     parent: dashboardPage.internationalParentLink,
     children: [
       {
-        pageName: 'Localization',
+        pageName: i18n.__('Localization'),
         selector: dashboardPage.localizationLink,
       },
       {
-        pageName: 'Zones',
+        pageName: i18n.__('Zones'),
         selector: dashboardPage.locationLink,
       },
       {
-        pageName: 'Taxes',
+        pageName: i18n.__('Taxes'),
         selector: dashboardPage.taxesLink,
       },
       {
-        pageName: 'Translations',
+        pageName: i18n.__('Translations'),
         selector: dashboardPage.translationsLink,
       },
     ],
@@ -194,31 +195,31 @@ const menuSelectors = [
     parent: dashboardPage.shopParametersParentLink,
     children: [
       {
-        pageName: 'Preferences',
+        pageName: i18n.__('Preferences'),
         selector: dashboardPage.shopParametersGeneralLink,
       },
       {
-        pageName: 'Order Settings',
+        pageName: i18n.__('Order Settings'),
         selector: dashboardPage.orderSettingsLink,
       },
       {
-        pageName: 'Product Settings',
+        pageName: i18n.__('Product Settings'),
         selector: dashboardPage.productSettingsLink,
       },
       {
-        pageName: 'Customers',
+        pageName: i18n.__('Customers'),
         selector: dashboardPage.customerSettingsLink,
       },
       {
-        pageName: 'Contacts',
+        pageName: i18n.__('Contacts'),
         selector: dashboardPage.contactLink,
       },
       {
-        pageName: 'SEO & URLs',
+        pageName: i18n.__('SEO & URLs'),
         selector: dashboardPage.trafficAndSeoLink,
       },
       {
-        pageName: 'Search',
+        pageName: i18n.__('Search'),
         selector: dashboardPage.searchLink,
       },
     ],
@@ -227,39 +228,39 @@ const menuSelectors = [
     parent: dashboardPage.advancedParametersLink,
     children: [
       {
-        pageName: 'Information',
+        pageName: i18n.__('Information'),
         selector: dashboardPage.informationLink,
       },
       {
-        pageName: 'Performance',
+        pageName: i18n.__('Performance'),
         selector: dashboardPage.performanceLink,
       },
       {
-        pageName: 'Administration',
+        pageName: i18n.__('Administration'),
         selector: dashboardPage.administrationLink,
       },
       {
-        pageName: 'E-mail',
+        pageName: i18n.__('E-mail'),
         selector: dashboardPage.emailLink,
       },
       {
-        pageName: 'Import',
+        pageName: i18n.__('Import'),
         selector: dashboardPage.importLink,
       },
       {
-        pageName: 'Employees',
+        pageName: i18n.__('Employees'),
         selector: dashboardPage.teamLink,
       },
       {
-        pageName: 'SQL Manager',
+        pageName: i18n.__('SQL Manager'),
         selector: dashboardPage.databaseLink,
       },
       {
-        pageName: 'Logs',
+        pageName: i18n.__('Logs'),
         selector: dashboardPage.logsLink,
       },
       {
-        pageName: 'Webservice',
+        pageName: i18n.__('Webservice'),
         selector: dashboardPage.webserviceLink,
       },
     ],

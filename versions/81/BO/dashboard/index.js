@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../BObasePage.js');
 
 /**
@@ -13,7 +14,7 @@ class Dashboard extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Dashboard • ';
+    this.pageTitle = i18n.__('Dashboard') + ' • ';
   }
 
   /*

@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../BObasePage.js');
 
 /**
@@ -14,7 +15,7 @@ class Login extends BOBasePage {
     super();
 
     this.pageTitle = 'PrestaShop';
-    this.loginErrorText = 'The employee does not exist, or the password provided is incorrect.';
+    this.loginErrorText = i18n.__('The employee does not exist, or the password provided is incorrect.');
 
     // Login header selectors
     this.loginHeaderBlock = '#login-header';
