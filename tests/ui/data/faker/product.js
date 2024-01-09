@@ -1,6 +1,7 @@
+const i18n = require('i18n');
 const faker = require('faker');
 
-const behavior = ['Deny orders', 'Allow orders', 'Default behavior'];
+const behavior = [i18n.__('Deny orders'), i18n.__('Allow orders'), i18n.__('Default behavior')];
 
 module.exports = class Product {
   constructor(productToCreate) {
@@ -17,7 +18,7 @@ module.exports = class Product {
       : productToCreate.quantity;
     this.price = productToCreate.price === undefined ? faker.random.number({min: 10, max: 20}) : productToCreate.price;
     this.combinations = productToCreate.combinations || {
-      Color: ['White', 'Black'],
+      Color: [i18n.__('White'), i18n.__('Black')],
       Size: ['S', 'M'],
     };
     this.pack = productToCreate.pack || {
@@ -26,17 +27,17 @@ module.exports = class Product {
     };
     this.taxRule = productToCreate.taxRule || 'FR Taux standard (20%)';
     this.specificPrice = productToCreate.specificPrice || {
-      combinations: 'Size - S, Color - White',
+      combinations: i18n.__('Size - S, Color - White'),
       discount: faker.random.number({min: 10, max: 100}),
       startingAt: faker.random.number({min: 2, max: 5}),
     };
     this.minimumQuantity = productToCreate.minimumQuantity === undefined
       ? faker.random.number({min: 1, max: 9})
       : productToCreate.minimumQuantity;
-    this.stockLocation = productToCreate.stockLocation || 'Stock location';
+    this.stockLocation = productToCreate.stockLocation || i18n.__('Stock location');
     this.lowStockLevel = productToCreate.lowStockLevel;
-    this.labelWhenInStock = productToCreate.labelWhenInStock || 'Label when in stock';
-    this.LabelWhenOutOfStock = productToCreate.LabelWhenOutOfStock || 'Label when out of stock';
+    this.labelWhenInStock = productToCreate.labelWhenInStock || i18n.__('Label when in stock');
+    this.LabelWhenOutOfStock = productToCreate.LabelWhenOutOfStock || i18n.__('Label when out of stock');
     this.behaviourOutOfStock = productToCreate.behaviourOutOfStock || faker.random.arrayElement(behavior);
   }
 };

@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,8 +14,9 @@ class ModuleCatalog extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Modules catalog •';
-    this.installMessageSuccessful = moduleTag => `Install action on module ${moduleTag} succeeded.`;
+    this.pageTitle = i18n.__('Modules catalog') + ' •';
+    this.installMessageSuccessful = moduleTag => i18n.__('Install action on module %s succeeded.', moduleTag);
+    this.uninstallMessageSuccessful = moduleTag => i18n.__('Uninstall action on module %s succeeded.', moduleTag);
 
     // Selectors
     this.searchModuleTagInput = '#search-input-group input.pstaggerAddTagInput';

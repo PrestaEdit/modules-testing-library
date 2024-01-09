@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,7 +14,7 @@ class ModuleConfiguration extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Configure';
+    this.pageTitle = i18n.__('Configure');
 
     // Selectors
     this.titleBlock = '.page-title';

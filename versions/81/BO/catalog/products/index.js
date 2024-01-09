@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,13 +14,13 @@ class Product extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Products •';
-    this.productDeletedSuccessfulMessage = 'Product successfully deleted.';
-    this.productMultiDeletedSuccessfulMessage = 'Product(s) successfully deleted.';
-    this.productDeactivatedSuccessfulMessage = 'Product successfully deactivated.';
-    this.productActivatedSuccessfulMessage = 'Product successfully activated.';
-    this.productMultiActivatedSuccessfulMessage = 'Product(s) successfully activated.';
-    this.productMultiDeactivatedSuccessfulMessage = 'Product(s) successfully deactivated.';
+    this.pageTitle = i18n.__('Products') + ' •';
+    this.productDeletedSuccessfulMessage = i18n.__('Product successfully deleted.');
+    this.productMultiDeletedSuccessfulMessage = i18n.__('Product(s) successfully deleted.');
+    this.productDeactivatedSuccessfulMessage = i18n.__('Product successfully deactivated.');
+    this.productActivatedSuccessfulMessage = i18n.__('Product successfully activated.');
+    this.productMultiActivatedSuccessfulMessage = i18n.__('Product(s) successfully activated.');
+    this.productMultiDeactivatedSuccessfulMessage = i18n.__('Product(s) successfully deactivated.');
 
     // Selectors
     // List of products
@@ -209,7 +210,7 @@ class Product extends BOBasePage {
         await this.selectByVisibleText(
           page,
           this.productFilterSelect(filterBy),
-          value ? 'Active' : 'Inactive',
+          value ? i18n.__('Active') : i18n.__('Inactive'),
         );
         break;
       default:

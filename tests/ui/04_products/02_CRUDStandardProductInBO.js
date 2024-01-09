@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 require('module-alias/register');
 
 const {expect} = require('chai');
@@ -20,7 +21,7 @@ const addProductPage = versionSelectResolver.require('BO/catalog/products/add.js
 const ProductFaker = require('@data/faker/product');
 
 const productToCreate = {
-  type: 'Standard product',
+  type: i18n.__('Standard product'),
   productHasCombinations: false,
 };
 const productData = new ProductFaker(productToCreate);

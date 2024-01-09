@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,11 +14,11 @@ class AddProduct extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Product •';
+    this.pageTitle = i18n.__('Product') + ' •';
     // Text Message
-    this.settingUpdatedMessage = 'Settings updated.';
-    this.duplicateSuccessfulMessage = 'Product successfully duplicated.';
-    this.errorMessage = 'Unable to update settings.';
+    this.settingUpdatedMessage = i18n.__('Settings updated.');
+    this.duplicateSuccessfulMessage = i18n.__('Product successfully duplicated.');
+    this.errorMessage = i18n.__('Unable to update settings.');
 
     // Selectors
     this.productNameInput = '#form_step1_name_1';

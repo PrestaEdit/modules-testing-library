@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,7 +14,7 @@ class ModuleManager extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Module manager •';
+    this.pageTitle = i18n.__('Module manager') + ' •';
     this.successfulEnableMessage = moduleTag => `Enable action on module ${moduleTag} succeeded.`;
     this.successfulDisableMessage = moduleTag => `Disable action on module ${moduleTag} succeeded.`;
 

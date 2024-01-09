@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const CommonPage = require('../../commonPage');
 
 /**
@@ -14,10 +15,10 @@ class BOBasePage extends CommonPage {
     super();
 
     // Successful Messages
-    this.successfulCreationMessage = 'Successful creation.';
-    this.successfulUpdateMessage = 'Successful update.';
-    this.successfulDeleteMessage = 'Successful deletion.';
-    this.successfulMultiDeleteMessage = 'The selection has been successfully deleted.';
+    this.successfulCreationMessage = i18n.__('Successful creation.');
+    this.successfulUpdateMessage = i18n.__('Successful update.');
+    this.successfulDeleteMessage = i18n.__('Successful deletion.');
+    this.successfulMultiDeleteMessage = i18n.__('The selection has been successfully deleted.');
 
     // top navbar
     this.userProfileIconNonMigratedPages = '#employee_infos a';
