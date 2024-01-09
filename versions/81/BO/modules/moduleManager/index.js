@@ -18,6 +18,9 @@ class ModuleManager extends BOBasePage {
     this.successfulEnableMessage = moduleTag => `Enable action on module ${moduleTag} succeeded.`;
     this.successfulDisableMessage = moduleTag => `Disable action on module ${moduleTag} succeeded.`;
 
+    // Header selectors
+    this.selectionSubTab = '#subtab-AdminModulesManage';
+
     // Selectors
     this.searchModuleTagInput = '#search-input-group input.pstaggerAddTagInput';
     this.searchModuleButton = '#module-search-button';
@@ -68,6 +71,15 @@ class ModuleManager extends BOBasePage {
     await page.type(this.searchModuleTagInput, moduleTag);
     await page.click(this.searchModuleButton);
     return this.elementVisible(page, this.moduleBlock(moduleName), 10000);
+  }
+
+  /**
+   * Go to selection subTab
+   * @param page {Page} Browser tab
+   * @return {Promise<void>}
+   */
+  async goToSelectionPage(page) {
+    await this.clickAndWaitForNavigation(page, this.selectionSubTab);
   }
 
   /**

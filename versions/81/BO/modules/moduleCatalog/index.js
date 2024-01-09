@@ -21,8 +21,9 @@ class ModuleCatalog extends BOBasePage {
     // Selectors
     this.searchModuleTagInput = '#search-input-group input.pstaggerAddTagInput';
     this.searchModuleButton = '#module-search-button';
-    this.moduleBloc = moduleName => `#modules-list-container-all div[data-name='${moduleName}']:not([style])`;
+    this.moduleBloc = moduleName => `div.module-item[data-name='${moduleName}']:not([style])`;
     this.installModuleButton = moduleName => `${this.moduleBloc(moduleName)} form>button.module_action_menu_install`;
+    this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions form[action*='uninstall']`;
     this.configureModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions a[href*='configure']`;
   }
 
@@ -45,7 +46,7 @@ class ModuleCatalog extends BOBasePage {
   }
 
   /**
-   * Install Module and waiting for successful massage
+   * Install Module and waiting for successful message
    * @param page {Page} Browser tab
    * @param moduleName {string} Name of the module
    * @returns {Promise<string>}
@@ -58,6 +59,23 @@ class ModuleCatalog extends BOBasePage {
     }
 
     await page.click(this.installModuleButton(moduleName));
+    return this.getTextContent(page, this.growlMessageBlock);
+  }
+
+  /**
+   * Uninstall Module and waiting for successful message
+   * @param page {Page} Browser tab
+   * @param moduleName {string} Name of the module
+   * @returns {Promise<string>}
+   */
+  async uninstallModule(page, moduleName) {
+    if (await this.elementNotVisible(page, this.moduleBloc(moduleName), 2000)) {
+      throw new Error('Can\'t found the module');
+    } else if (await this.elementNotVisible(page, this.uninstallModuleButton(moduleName), 2000)) {
+      throw new Error('Module already uninstalled');
+    }
+
+    await page.click(this.uninstallModuleButton(moduleName));
     return this.getTextContent(page, this.growlMessageBlock);
   }
 
