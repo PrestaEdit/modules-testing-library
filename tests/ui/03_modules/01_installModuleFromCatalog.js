@@ -21,8 +21,6 @@ let browserContext;
 let page;
 
 const moduleToInstall = {
-  name: 'Customer follow-up',
-  tag: 'ps_reminder',
   name: i18n.__('Mail alerts'),
   tag: 'ps_emailalerts',
 };
@@ -58,7 +56,7 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should go to modules catalog page', async () => {
-    if (global.PS_VERSION.includes('1.7.4')) {
+    if (global.PS_VERSION.includes('1.7.4') || global.PS_VERSION.startsWith('8')) {
       await dashboardPage.goToSubMenu(
         page,
         dashboardPage.modulesParentLink,
@@ -85,6 +83,8 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should install the module', async () => {
+
+    console.log('test00');
     const textResult = await moduleCatalogPage.installModule(page, moduleToInstall.name);
 
     await expect(textResult).to.contain(moduleCatalogPage.installMessageSuccessful(moduleToInstall.tag));
@@ -96,5 +96,38 @@ describe('Install a module from modules catalog', async () => {
     // Check module name
     const pageSubtitle = await moduleConfigurationPage.getPageSubtitle(page);
     await expect(pageSubtitle).to.contain(moduleToInstall.name);
+  });
+
+  it('should go to modules catalog page', async () => {
+    if (global.PS_VERSION.includes('1.7.4') || global.PS_VERSION.startsWith('8')) {
+      await dashboardPage.goToSubMenu(
+        page,
+        dashboardPage.modulesParentLink,
+        dashboardPage.moduleManagerLink,
+      );
+
+      await moduleManagerPage.goToSelectionPage(page);
+    } else {
+      await dashboardPage.goToSubMenu(
+        page,
+        dashboardPage.modulesParentLink,
+        dashboardPage.moduleCatalogueLink,
+      );
+    }
+
+    const pageTitle = await moduleCatalogPage.getPageTitle(page);
+    await expect(pageTitle).to.contains(moduleCatalogPage.pageTitle);
+  });
+
+  it('should search a module', async () => {
+    const isModuleVisible = await moduleCatalogPage.searchModule(page, moduleToInstall.tag, moduleToInstall.name);
+
+    await expect(isModuleVisible).to.be.true;
+  });
+
+  it('should uninstall the module', async () => {
+    const textResult = await moduleCatalogPage.uninstallModule(page, moduleToInstall.name);
+
+    await expect(textResult).to.contain(moduleCatalogPage.uninstallMessageSuccessful(moduleToInstall.tag));
   });
 });
