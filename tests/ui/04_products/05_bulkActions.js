@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 require('module-alias/register');
 
 const {expect} = require('chai');
@@ -19,8 +20,8 @@ const addProductPage = versionSelectResolver.require('BO/catalog/products/add.js
 // Import data
 const ProductFaker = require('@data/faker/product');
 
-const firstProductData = new ProductFaker({name: 'TO DELETE 1', type: 'Standard product'});
-const secondProductData = new ProductFaker({name: 'TO DELETE 2', type: 'Standard product'});
+const firstProductData = new ProductFaker({name: 'TO DELETE 1', type: i18n.__('Standard product')});
+const secondProductData = new ProductFaker({name: 'TO DELETE 2', type: i18n.__('Standard product')});
 
 let browserContext;
 let page;

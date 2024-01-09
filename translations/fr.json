@@ -91,5 +91,8 @@
 	"Label when in stock": "Libellé si en stock",
 	"Label when out of stock": "Libellé si en rupture de stock",
 	"Active": "Oui",
-	"Standard product": "Produit standard"
+	"Standard product": "Produit standard",
+	"FR Taux standard (20%)": "BE Standard Rate (21%)",
+	"Enable action on module %s succeeded.": "L'action Enable sur le module %s a réussi.",
+	"Disable action on module %s succeeded.": "L'action Disable sur le module %s a réussi."
 }

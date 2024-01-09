@@ -15,8 +15,8 @@ class ModuleManager extends BOBasePage {
     super();
 
     this.pageTitle = i18n.__('Module manager') + ' •';
-    this.successfulEnableMessage = moduleTag => `Enable action on module ${moduleTag} succeeded.`;
-    this.successfulDisableMessage = moduleTag => `Disable action on module ${moduleTag} succeeded.`;
+    this.successfulEnableMessage = moduleTag => i18n.__('Enable action on module %s succeeded.', moduleTag);
+    this.successfulDisableMessage = moduleTag => i18n.__('Disable action on module %s succeeded.', moduleTag);
 
     // Header selectors
     this.selectionSubTab = '#subtab-AdminModulesManage';

@@ -22,6 +22,7 @@ const ProductFaker = require('@data/faker/product');
 
 const productToCreate = {
   type: i18n.__('Standard product'),
+  taxRule: i18n.__('FR Taux standard (20%)'),
   productHasCombinations: false,
 };
 const productData = new ProductFaker(productToCreate);

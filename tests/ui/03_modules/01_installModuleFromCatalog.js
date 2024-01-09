@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 require('module-alias/register');
 
 const {expect} = require('chai');
@@ -22,6 +23,8 @@ let page;
 const moduleToInstall = {
   name: 'Customer follow-up',
   tag: 'ps_reminder',
+  name: i18n.__('Mail alerts'),
+  tag: 'ps_emailalerts',
 };
 
 /*
