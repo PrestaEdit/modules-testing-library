@@ -25,7 +25,7 @@ module.exports = class Product {
       demo_1: faker.random.number({min: 10, max: 100}),
       demo_2: faker.random.number({min: 10, max: 100}),
     };
-    this.taxRule = productToCreate.taxRule || 'FR Taux standard (20%)';
+    this.taxRule = productToCreate.taxRule || i18n.__('FR Taux standard (20%)');
     this.specificPrice = productToCreate.specificPrice || {
       combinations: i18n.__('Size - S, Color - White'),
       discount: faker.random.number({min: 10, max: 100}),
