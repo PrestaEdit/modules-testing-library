@@ -19,6 +19,7 @@ let page;
 
 const menuSelectors = [
   {
+    pageName: 'Orders',
     parent: dashboardPage.ordersParentLink,
     children: [
       {
@@ -49,6 +50,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Catalog',
     parent: dashboardPage.catalogParentLink,
     children: [
       {
@@ -89,6 +91,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Customers',
     parent: dashboardPage.customersParentLink,
     children: [
       {
@@ -104,6 +107,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Customer Service',
     parent: dashboardPage.customerServiceParentLink,
     children: [
       {
@@ -124,6 +128,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Modules',
     parent: dashboardPage.modulesParentLink,
     children: [
       {
@@ -139,6 +144,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Design',
     parent: dashboardPage.designParentLink,
     children: [
       {
@@ -169,6 +175,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Shipping',
     parent: dashboardPage.shippingParentLink,
     children: [
       {
@@ -184,6 +191,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Payment',
     parent: dashboardPage.paymentParentLink,
     children: [
       {
@@ -199,6 +207,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'International',
     parent: dashboardPage.internationalParentLink,
     children: [
       {
@@ -224,6 +233,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Parameters',
     parent: dashboardPage.shopParametersParentLink,
     children: [
       {
@@ -264,6 +274,7 @@ const menuSelectors = [
     ],
   },
   {
+    pageName: 'Advanced Parameters',
     parent: dashboardPage.advancedParametersLink,
     children: [
       {
@@ -337,21 +348,23 @@ describe('Check Menu selectors in BO', async () => {
   });
 
   menuSelectors.forEach((menuSelector) => {
-    menuSelector.children.forEach((child) => {
-      it(`should go to ${child.pageName} page`, async () => {
-        if (child.selector !== false) {
-          await dashboardPage.goToSubMenu(
-            page,
-            menuSelector.parent,
-            child.selector,
-          );
+    describe(`${menuSelector.pageName}`, async () => {
+      menuSelector.children.forEach((child) => {
+        it(`should go to ${child.pageName} page`, async () => {
+          if (child.selector !== false) {
+            await dashboardPage.goToSubMenu(
+              page,
+              menuSelector.parent,
+              child.selector,
+            );
 
-          const pageTitle = await dashboardPage.getPageTitle(page);
-          await expect(pageTitle.toLowerCase()).to.contain(child.pageTitle.toLowerCase());
-        } else {
-          // Selector is not defined so we skip the test
-          await expect(true).to.be.true;
-        }
+            const pageTitle = await dashboardPage.getPageTitle(page);
+            await expect(pageTitle.toLowerCase()).to.contain(child.pageTitle.toLowerCase());
+          } else {
+            // Selector is not defined so we skip the test
+            await expect(true).to.be.true;
+          }
+        });
       });
     });
   });
