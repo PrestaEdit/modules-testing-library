@@ -83,8 +83,6 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should install the module', async () => {
-
-    console.log('test00');
     const textResult = await moduleCatalogPage.installModule(page, moduleToInstall.name);
 
     await expect(textResult).to.contain(moduleCatalogPage.installMessageSuccessful(moduleToInstall.tag));
