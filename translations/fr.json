@@ -90,7 +90,7 @@
 	"Stock location": "Emplacement du stock",
 	"Label when in stock": "Libellé si en stock",
 	"Label when out of stock": "Libellé si en rupture de stock",
-	"Active": "Oui",
+	"Active": "Active",
 	"Standard product": "Produit standard",
 	"FR Taux standard (20%)": "FR Taux standard (20%)",
 	"Enable action on module %s succeeded.": "L'action Enable sur le module %s a réussi.",
