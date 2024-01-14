@@ -27,7 +27,7 @@ class Product extends BOBasePage {
     this.productListForm = '#product_catalog_list';
     this.productTable = `${this.productListForm} table`;
     this.productRow = `${this.productTable} tbody tr`;
-    this.productNumberBloc = `${this.productListForm} .pagination-block ul.pagination`;
+    this.productNumberBloc = `${this.productListForm} .pagination-block ul.pagination + div`;
     this.dropdownToggleButton = row => `${this.productRow}:nth-of-type(${row}) button.dropdown-toggle`;
     this.dropdownMenu = row => `${this.productRow}:nth-of-type(${row}) div.dropdown-menu`;
     this.dropdownMenuDeleteLink = row => `${this.dropdownMenu(row)} a.product-edit[onclick*='delete']`;
@@ -277,7 +277,8 @@ class Product extends BOBasePage {
     }
 
     const footerText = await this.getTextContent(page, this.productNumberBloc);
-    const numberOfProduct = /\d+/g.exec(footerText.match(/out of ([0-9]+)/)).toString();
+    const matchPattern = '\\b' + i18n.__('out of') + ' ([0-9]+)\\b';
+    const numberOfProduct = /\d+/g.exec(footerText.match(matchPattern)).toString();
     return parseInt(numberOfProduct, 10);
   }
 

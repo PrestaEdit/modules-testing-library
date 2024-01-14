@@ -96,5 +96,6 @@
 	"Enable action on module %s succeeded.": "L'action Enable sur le module %s a réussi.",
 	"Disable action on module %s succeeded.": "L'action Disable sur le module %s a réussi.",
 	"Clothes": "Vêtements",
-	"Contact us": "Contactez-nous"
+	"Contact us": "Contactez-nous",
+	"out of": "sur"
 }

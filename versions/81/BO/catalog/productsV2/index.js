@@ -281,7 +281,8 @@ class Product extends BOBasePage {
     }
 
     const footerText = await this.getTextContent(page, this.productNumberBloc);
-    const numberOfProduct = /\d+/g.exec(footerText.match(/([0-9]+)/)).toString();
+    const matchPattern = '\\b' + i18n.__('out of') + ' ([0-9]+)\\b';
+    const numberOfProduct = /\d+/g.exec(footerText.match(matchPattern)).toString();
     return parseInt(numberOfProduct, 10);
   }
 
