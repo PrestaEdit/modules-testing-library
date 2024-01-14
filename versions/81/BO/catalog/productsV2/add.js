@@ -26,7 +26,7 @@ class AddProduct extends BOBasePage {
     this.productReferenceInput = '#form_step6_reference';
     this.productQuantityInput = '#form_step1_qty_0_shortcut';
     this.productPriceAtiInput = '#form_step1_price_ttc_shortcut';
-    this.saveProductButton = 'form.product-page button[type="submit"]';
+    this.saveProductButton = 'input#submit[value=\'Save\']';
     this.productOnlineSwitch = '.product-footer div.switch-input';
     this.productOnlineTitle = 'h2.for-switch.online-title';
     this.productShortDescriptionIframe = '#form_step1_description_short';

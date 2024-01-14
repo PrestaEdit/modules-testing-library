@@ -23,7 +23,7 @@ class ModuleCatalog extends BOBasePage {
     this.searchModuleButton = '#module-search-button';
     this.moduleBloc = moduleName => `div.module-item[data-name='${moduleName}']:not([style])`;
     this.installModuleButton = moduleName => `${this.moduleBloc(moduleName)} form>button.module_action_menu_install`;
-    this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions form[action*='uninstall']`;
+    this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions .dropdown-item module_action_menu_uninstall`;
     this.configureModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions a[href*='configure']`;
   }
 
