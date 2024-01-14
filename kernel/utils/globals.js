@@ -21,6 +21,13 @@ global.FO = {
  */
 global.PS_VERSION = process.env.PS_VERSION || '1.7.7';
 
+/**
+ * @global
+ * @desc PrestaShop version to test (minor version)
+ * @default 1.7.7
+ * @type {string}
+ */
+global.LOCALE = process.env.LOCALE || 'EN';
 
 /**
  * @namespace BO
@@ -87,7 +94,7 @@ global.BROWSER = {
    * @desc Language for the browser to create
    * @default en-GB
    */
-  lang: 'en-GB',
+  lang: process.env.BROWSER_LANG || 'en-GB',
 
   /**
    * @memberOf BROWSER
@@ -95,7 +102,7 @@ global.BROWSER = {
    * @desc Width size of the browser to create
    * @const
    */
-  width: 1680,
+  width: parseInt(process.env.BROWSER_WIDTH) || 1680,
 
   /**
    * @memberOf BROWSER
@@ -103,7 +110,7 @@ global.BROWSER = {
    * @desc Height size of the browser to create
    * @const
    */
-  height: 900,
+  height: parseInt(process.env.BROWSER_HEIGHT) || 900,
 
   /**
    * @memberOf BROWSER

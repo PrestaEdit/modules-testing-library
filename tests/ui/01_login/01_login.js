@@ -22,7 +22,7 @@ check PS version
 Log in
 Log out
  */
-describe(`Check PS version ${global.PS_VERSION}, and login and log out from BO`, async () => {
+describe(`Check PS version ${global.PS_VERSION} with ${global.LOCALE} language, and login and log out from BO`, async () => {
   // before and after functions
   before(async function () {
     browserContext = await helper.createBrowserContext(this.browser);

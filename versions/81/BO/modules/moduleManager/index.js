@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const BOBasePage = require('../../BObasePage.js');
 
 /**
@@ -13,9 +14,12 @@ class ModuleManager extends BOBasePage {
   constructor() {
     super();
 
-    this.pageTitle = 'Module manager •';
-    this.successfulEnableMessage = moduleTag => `Enable action on module ${moduleTag} succeeded.`;
-    this.successfulDisableMessage = moduleTag => `Disable action on module ${moduleTag} succeeded.`;
+    this.pageTitle = i18n.__('Module manager') + ' •';
+    this.successfulEnableMessage = moduleTag => i18n.__('Enable action on module %s succeeded.', moduleTag);
+    this.successfulDisableMessage = moduleTag => i18n.__('Disable action on module %s succeeded.', moduleTag);
+
+    // Header selectors
+    this.selectionSubTab = '#subtab-AdminModulesManage';
 
     // Selectors
     this.searchModuleTagInput = '#search-input-group input.pstaggerAddTagInput';
@@ -67,6 +71,15 @@ class ModuleManager extends BOBasePage {
     await page.type(this.searchModuleTagInput, moduleTag);
     await page.click(this.searchModuleButton);
     return this.elementVisible(page, this.moduleBlock(moduleName), 10000);
+  }
+
+  /**
+   * Go to selection subTab
+   * @param page {Page} Browser tab
+   * @return {Promise<void>}
+   */
+  async goToSelectionPage(page) {
+    await this.clickAndWaitForNavigation(page, this.selectionSubTab);
   }
 
   /**

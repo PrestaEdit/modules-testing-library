@@ -7,11 +7,15 @@ const VersionSelectResolver = require('@resolvers/versionSelectResolver');
 
 const versionSelectResolver = new VersionSelectResolver(global.PS_VERSION);
 
+const DemoDatasResolver = require('@resolvers/demoDatasResolver');
+
+const demoDatasResolver = new DemoDatasResolver(global.LOCALE);
+
 // Import utils
 const helper = require('@utils/helpers');
 
 // Import data
-const {Products} = require('@data/demo/products');
+const {Products} = demoDatasResolver.require('products');
 
 // Import pages
 const loginPage = versionSelectResolver.require('BO/login');

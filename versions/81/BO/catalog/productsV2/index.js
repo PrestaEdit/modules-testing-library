@@ -24,17 +24,18 @@ class Product extends BOBasePage {
 
     // Selectors
     // List of products
-    this.productListForm = '#product_catalog_list';
+    this.productListForm = '#product_grid_panel';
     this.productTable = `${this.productListForm} table`;
     this.productRow = `${this.productTable} tbody tr`;
-    this.productNumberBloc = `${this.productListForm} .pagination-block ul.pagination`;
+    this.productListfooterRow = `${this.productListForm} div.row:nth-of-type(3)`;
+    this.productNumberBloc = `${this.productListfooterRow} ul.pagination + div`;
     this.dropdownToggleButton = row => `${this.productRow}:nth-of-type(${row}) button.dropdown-toggle`;
     this.dropdownMenu = row => `${this.productRow}:nth-of-type(${row}) div.dropdown-menu`;
     this.dropdownMenuDeleteLink = row => `${this.dropdownMenu(row)} a.product-edit[onclick*='delete']`;
     this.dropdownMenuPreviewLink = row => `${this.dropdownMenu(row)} a.product-edit:not([onclick])`;
     this.dropdownMenuDuplicateLink = row => `${this.dropdownMenu(row)} a.product-edit[onclick*='duplicate']`;
     this.productRowEditLink = row => `${this.productRow}:nth-of-type(${row}) a.tooltip-link.product-edit`;
-    this.selectAllBulkCheckboxLabel = `${this.productListForm} table td.checkbox-column input[type='checkbox']`;
+    this.selectAllBulkCheckboxLabel = '#catalog-actions div.md-checkbox label';
     this.productBulkMenuButton = '#product_bulk_menu';
     this.productBulkMenuButtonState = state => `${this.productBulkMenuButton}[aria-expanded='${state}']`;
     this.productBulkDropdownMenu = 'div.bulk-catalog div.dropdown-menu.show';
@@ -42,25 +43,25 @@ class Product extends BOBasePage {
     this.productBulkEnableLink = `${this.productBulkDropdownMenu} a[onclick*='activate_all']`;
     this.productBulkDisableLink = `${this.productBulkDropdownMenu} a[onclick*='deactivate_all']`;
     // Filters input
-    this.productFilterIDMinInput = `${this.productListForm} #filter_column_id_product_min`;
-    this.productFilterIDMaxInput = `${this.productListForm} #filter_column_id_product_max`;
-    this.productFilterInput = filterBy => `${this.productListForm} input[name='filter_column_${filterBy}']`;
-    this.productFilterSelect = filterBy => `${this.productListForm} select[name='filter_column_${filterBy}']`;
-    this.productFilterPriceMinInput = `${this.productListForm} #filter_column_price_min`;
-    this.productFilterPriceMaxInput = `${this.productListForm} #filter_column_price_max`;
-    this.productFilterQuantityMinInput = `${this.productListForm} #filter_column_sav_quantity_min`;
-    this.productFilterQuantityMaxInput = `${this.productListForm} #filter_column_sav_quantity_max`;
-    this.filterSearchButton = `${this.productListForm} button[name='products_filter_submit']`;
-    this.filterResetButton = `${this.productListForm} button[name='products_filter_reset']`;
+    this.productFilterIDMinInput = `${this.productListForm} #product_id_product_min_field`;
+    this.productFilterIDMaxInput = `${this.productListForm} #product_id_product_max_field`;
+    this.productFilterInput = filterBy => `${this.productListForm} input[name='product[${filterBy}]']`;
+    this.productFilterSelect = filterBy => `${this.productListForm} select[name='product[${filterBy}]']`;
+    this.productFilterPriceMinInput = `${this.productListForm} #product_final_price_tax_excluded_min_field`;
+    this.productFilterPriceMaxInput = `${this.productListForm} #product_final_price_tax_excluded_max_field`;
+    this.productFilterQuantityMinInput = `${this.productListForm} #product_quantity_min_field`;
+    this.productFilterQuantityMaxInput = `${this.productListForm} #product_quantity_max_field`;
+    this.filterSearchButton = `${this.productListForm} button[name='product[actions][search]']`;
+    this.filterResetButton = `${this.productListForm} button[name='product[actions][reset]']`;
     // Products list
     this.productsListTableRow = row => `${this.productRow}:nth-child(${row})`;
-    this.productsListTableColumnID = row => `${this.productsListTableRow(row)}[data-product-id]`;
-    this.productsListTableColumnName = row => `${this.productsListTableRow(row)} td:nth-child(4) a`;
-    this.productsListTableColumnReference = row => `${this.productsListTableRow(row)} td:nth-child(5)`;
-    this.productsListTableColumnCategory = row => `${this.productsListTableRow(row)} td:nth-child(6)`;
-    this.productsListTableColumnPrice = row => `${this.productsListTableRow(row)} td:nth-child(7)`;
-    this.productsListTableColumnQuantity = row => `${this.productsListTableRow(row)} td.product-sav-quantity`;
-    this.productsListTableColumnStatus = row => `${this.productsListTableRow(row)} td:nth-child(10) .ps-switch`;
+    this.productsListTableColumnID = row => `${this.productsListTableRow(row)} td.column-id_product`;
+    this.productsListTableColumnName = row => `${this.productsListTableRow(row)} td.column-name a`;
+    this.productsListTableColumnReference = row => `${this.productsListTableRow(row)} td.column-reference`;
+    this.productsListTableColumnCategory = row => `${this.productsListTableRow(row)} td.column-category`;
+    this.productsListTableColumnPrice = row => `${this.productsListTableRow(row)} td.column-final_price_tax_excluded`;
+    this.productsListTableColumnQuantity = row => `${this.productsListTableRow(row)} td.column-quantity`;
+    this.productsListTableColumnStatus = row => `${this.productsListTableRow(row)} td.column-active .ps-switch`;
     this.productsListTableColumnStatusInput = row => `${this.productsListTableColumnStatus(row)} input`;
     // Filter Category
     this.treeCategoriesBloc = '#tree-categories';
@@ -152,7 +153,7 @@ class Product extends BOBasePage {
    */
   async getProductPriceFromList(page, row) {
     const text = await this.getTextContent(page, this.productsListTableColumnPrice(row));
-    const price = /\d+(\.\d+)?/g.exec(text.replace(',', '.')).toString();
+    const price = /\d+(\.\d+)?/g.exec(text).toString();
 
     return parseFloat(price);
   }
@@ -200,6 +201,9 @@ class Product extends BOBasePage {
             break;
           case 'sav_quantity':
             await this.filterQuantityProducts(page, value.min, value.max);
+            break;
+          case 'name_category':
+            await page.type(this.productFilterInput('category'), value);
             break;
           default:
             await page.type(this.productFilterInput(filterBy), value);
@@ -277,7 +281,7 @@ class Product extends BOBasePage {
     }
 
     const footerText = await this.getTextContent(page, this.productNumberBloc);
-    const numberOfProduct = /\d+/g.exec(footerText.match(/out of ([0-9]+)/)).toString();
+    const numberOfProduct = /\d+/g.exec(footerText.match(/([0-9]+)/)).toString();
     return parseInt(numberOfProduct, 10);
   }
 
@@ -425,7 +429,7 @@ class Product extends BOBasePage {
    */
   async bulkSetStatus(page, status) {
     await Promise.all([
-      this.waitForVisibleSelector(page, this.selectAllBulkCheckboxLabel),
+      this.waitForVisibleSelector(page, this.productBulkMenuButton),
       page.click(this.selectAllBulkCheckboxLabel),
     ]);
 

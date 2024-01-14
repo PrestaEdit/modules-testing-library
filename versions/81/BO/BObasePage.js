@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const CommonPage = require('../../commonPage');
 
 /**
@@ -14,10 +15,10 @@ class BOBasePage extends CommonPage {
     super();
 
     // Successful Messages
-    this.successfulCreationMessage = 'Successful creation.';
-    this.successfulUpdateMessage = 'Successful update.';
-    this.successfulDeleteMessage = 'Successful deletion.';
-    this.successfulMultiDeleteMessage = 'The selection has been successfully deleted.';
+    this.successfulCreationMessage = i18n.__('Successful creation.');
+    this.successfulUpdateMessage = i18n.__('Successful update.');
+    this.successfulDeleteMessage = i18n.__('Successful deletion.');
+    this.successfulMultiDeleteMessage = i18n.__('The selection has been successfully deleted.');
 
     // top navbar
     this.userProfileIconNonMigratedPages = '#employee_infos a';
@@ -77,7 +78,7 @@ class BOBasePage extends CommonPage {
     // Improve
     // Modules
     this.modulesParentLink = '#subtab-AdminParentModulesSf';
-    this.moduleCatalogueLink = '#subtab-AdminParentModulesCatalog';
+    this.moduleCatalogueLink = false;
     this.moduleManagerLink = '#subtab-AdminModulesSf';
 
     // Design
@@ -85,7 +86,7 @@ class BOBasePage extends CommonPage {
     // Theme & logo
     this.themeAndLogoLink = '#subtab-AdminThemesParent';
     // Theme Catalog
-    this.themeCatalog = '#subtab-AdminThemesCatalog , #subtab-AdminPsMboTheme';
+    this.themeCatalog = false;
     // Pages
     this.pagesLink = '#subtab-AdminCmsContent';
     // Positions

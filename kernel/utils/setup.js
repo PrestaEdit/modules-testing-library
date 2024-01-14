@@ -1,5 +1,16 @@
-/** @module setup */
+const path = require('path');
+const i18n = require('i18n');
+/** @module helper */
 const helper = require('./helpers');
+
+/**
+ * configure shared state
+ */
+i18n.configure({
+  locales: ['en', 'fr', 'fr-BE'],
+  defaultLocale: global.LOCALE,
+  directory: path.join(__dirname, '../../translations'),
+});
 
 /**
  * @function
