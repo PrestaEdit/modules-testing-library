@@ -1,7 +1,10 @@
-/** @module helpers *//** @module helpers */
 require('./globals');
 
+const fs = require('fs');
 const playwright = require('playwright');
+const {PNG} = require('pngjs');
+const pixelmatch = require('pixelmatch');
+
 
 module.exports = {
   /**
@@ -82,5 +85,56 @@ module.exports = {
    */
   async closeBrowser(browser) {
     return browser.close();
+  },
+
+  /**
+   * Make screenshot
+   *
+   * @param page {Page} Page instance
+   * @return {Promise<Page>}
+   */
+  async capture(page, relatedPage, specific = '') {
+    let screenIdentifier = await this.getScreenIdentifier(relatedPage);
+    if (specific !== '') {
+      screenIdentifier = screenIdentifier + '/' + specific;
+    }
+    const options = {path: 'screens/' + screenIdentifier + '/expected.png'};
+
+    return page.screenshot(options);
+  },
+  async captureNow(page, relatedPage, specific = '') {
+    let screenIdentifier = await this.getScreenIdentifier(relatedPage);
+    if (specific !== '') {
+      screenIdentifier = screenIdentifier + '/' + specific;
+    }
+    const options = {path: 'screens/' + screenIdentifier + '/actual.png'};
+
+    await page.screenshot(options);
+
+    return 'screens/' + screenIdentifier + '/actual.png';
+  },
+  async getScreenIdentifier(page) {
+    return page.constructor.name.toLowerCase();
+  },
+  async visualComparison(page, relatedPage, specific = '') {
+    if (global.REFRESH_SNAPSHOTS) {
+      await this.capture(page, relatedPage, specific);
+    }
+
+    let screenIdentifier = await this.getScreenIdentifier(relatedPage);
+    if (specific !== '') {
+      screenIdentifier = screenIdentifier + '/' + specific;
+    }
+
+    const img1 = PNG.sync.read(fs.readFileSync('screens/' + screenIdentifier + '/expected.png'));
+    const img2 = PNG.sync.read(fs.readFileSync(await this.captureNow(page, relatedPage, specific)));
+    const {width, height} = img1;
+    const diff = new PNG({width, height});
+
+    const numDiffPixels = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.2});
+
+    fs.writeFileSync('screens/' + screenIdentifier + '/diff.png', PNG.sync.write(diff));
+
+    return numDiffPixels > 0;
   },
 };

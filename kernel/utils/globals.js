@@ -23,6 +23,14 @@ global.PS_VERSION = process.env.PS_VERSION || '1.7.7';
 
 /**
  * @global
+ * @desc Refresh snapshots
+ * @default false
+ * @type {boolean}
+ */
+global.REFRESH_SNAPSHOTS = process.env.REFRESH_SNAPSHOTS || false;
+
+/**
+ * @global
  * @desc PrestaShop version to test (minor version)
  * @default 1.7.7
  * @type {string}

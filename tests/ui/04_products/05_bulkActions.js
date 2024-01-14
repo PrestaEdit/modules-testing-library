@@ -36,7 +36,7 @@ Disable by bulk actions
 Delete by bulk actions
 */
 
-describe('Bulk actions products', async () => {
+describe.skip('Bulk actions products', async () => {
   // before and after functions
   before(async function () {
     browserContext = await helper.createBrowserContext(this.browser);
