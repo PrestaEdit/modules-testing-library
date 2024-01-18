@@ -124,7 +124,7 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should uninstall the module', async () => {
-    const textResult = await moduleCatalogPage.uninstallModule(page, moduleToInstall.name);
+    const textResult = await moduleCatalogPage.uninstallModule(page, moduleToInstall.tag, moduleToInstall.name);
 
     await expect(textResult).to.contain(moduleCatalogPage.uninstallMessageSuccessful(moduleToInstall.tag));
   });

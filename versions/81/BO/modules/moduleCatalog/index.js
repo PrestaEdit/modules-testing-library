@@ -26,6 +26,9 @@ class ModuleCatalog extends BOBasePage {
     this.installModuleButton = moduleName => `${this.moduleBloc(moduleName)} form>button.module_action_menu_install`;
     this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions .dropdown-item.module_action_menu_uninstall`;
     this.configureModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions a[href*='configure']`;
+
+    this.uninstallModal = moduleTag => `#module-modal-confirm-${moduleTag}-uninstall`;
+    this.confirmUninstallModalLink = moduleTag => `${this.uninstallModal(moduleTag)} a.module_action_modal_uninstall`;
   }
 
   /*
@@ -69,7 +72,7 @@ class ModuleCatalog extends BOBasePage {
    * @param moduleName {string} Name of the module
    * @returns {Promise<string>}
    */
-  async uninstallModule(page, moduleName) {
+  async uninstallModule(page, moduleTag, moduleName) {
     if (await this.elementNotVisible(page, this.moduleBloc(moduleName), 2000)) {
       throw new Error('Can\'t found the module');
     }
@@ -83,8 +86,21 @@ class ModuleCatalog extends BOBasePage {
       throw new Error('Module already uninstalled');
     }
 
-    await page.click(this.uninstallModuleButton(moduleName));
-    return this.getTextContent(page, this.growlMessageBlock);
+    // Click on disable module and wait for modal to be displayed
+    await Promise.all([
+      page.click(this.uninstallModuleButton(moduleName)),
+      this.waitForVisibleSelector(page, this.uninstallModal(moduleTag)),
+    ]);
+
+    // Confirm delete in modal and get successful message
+    const [textResult] = await Promise.all([
+      this.getGrowlMessageContent(page),
+      page.click(this.confirmUninstallModalLink(moduleTag)),
+    ]);
+
+    await this.closeGrowlMessage(page);
+
+    return textResult;
   }
 
   /**
