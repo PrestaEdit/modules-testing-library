@@ -34,7 +34,6 @@ class Product extends BOBasePage {
     this.dropdownMenuPreviewLink = row => `${this.dropdownMenu(row)} a.product-edit:not([onclick])`;
     this.dropdownMenuDuplicateLink = row => `${this.dropdownMenu(row)} a.product-edit[onclick*='duplicate']`;
     this.productRowEditLink = row => `${this.productRow}:nth-of-type(${row}) a.tooltip-link.product-edit`;
-    this.selectAllBulkCheckboxLabel = `${this.productListForm} table td.checkbox-column input[type='checkbox']`;
     this.productBulkMenuButton = '#product_bulk_menu';
     this.productBulkMenuButtonState = state => `${this.productBulkMenuButton}[aria-expanded='${state}']`;
     this.productBulkDropdownMenu = 'div.bulk-catalog div.dropdown-menu.show';
@@ -52,6 +51,9 @@ class Product extends BOBasePage {
     this.productFilterQuantityMaxInput = `${this.productListForm} #filter_column_sav_quantity_max`;
     this.filterSearchButton = `${this.productListForm} button[name='products_filter_submit']`;
     this.filterResetButton = `${this.productListForm} button[name='products_filter_reset']`;
+    // Products table selectors
+    this.productTableFilterLine = `${this.productListForm} tr.column-filters`;
+    this.selectAllBulkCheckboxLabel = `${this.productTableFilterLine} div.md-checkbox`;
     // Products list
     this.productsListTableRow = row => `${this.productRow}:nth-child(${row})`;
     this.productsListTableColumnID = row => `${this.productsListTableRow(row)}[data-product-id]`;
