@@ -21,7 +21,7 @@ let page;
 /*
 Desc
  */
-describe.only('Front Office', async () => {
+describe('Front Office', async () => {
   before(async function () {
     browserContext = await helper.createBrowserContext(this.browser);
 
