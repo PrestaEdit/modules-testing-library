@@ -22,8 +22,9 @@ class ModuleCatalog extends BOBasePage {
     this.searchModuleTagInput = '#search-input-group input.pstaggerAddTagInput';
     this.searchModuleButton = '#module-search-button';
     this.moduleBloc = moduleName => `div.module-item[data-name='${moduleName}']:not([style])`;
+    this.actionsDropdownButton = moduleName => `${this.moduleBloc(moduleName)} button.dropdown-toggle`;
     this.installModuleButton = moduleName => `${this.moduleBloc(moduleName)} form>button.module_action_menu_install`;
-    this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions .dropdown-item module_action_menu_uninstall`;
+    this.uninstallModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions .dropdown-item.module_action_menu_uninstall`;
     this.configureModuleButton = moduleName => `${this.moduleBloc(moduleName)} div.module-actions a[href*='configure']`;
   }
 
@@ -71,7 +72,14 @@ class ModuleCatalog extends BOBasePage {
   async uninstallModule(page, moduleName) {
     if (await this.elementNotVisible(page, this.moduleBloc(moduleName), 2000)) {
       throw new Error('Can\'t found the module');
-    } else if (await this.elementNotVisible(page, this.uninstallModuleButton(moduleName), 2000)) {
+    }
+    if (await this.elementNotVisible(page, this.uninstallModuleButton(moduleName), 1000)) {
+      await Promise.all([
+        page.click(this.actionsDropdownButton(moduleName)),
+        this.waitForVisibleSelector(page, `${this.actionsDropdownButton(moduleName)}[aria-expanded='true']`),
+      ]);
+    }
+    if (await this.elementNotVisible(page, this.uninstallModuleButton(moduleName), 2000)) {
       throw new Error('Module already uninstalled');
     }
 

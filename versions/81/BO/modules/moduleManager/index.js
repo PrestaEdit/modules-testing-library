@@ -144,7 +144,7 @@ class ModuleManager extends BOBasePage {
    * @return {Promise<string>}
    */
   async disableModule(page, moduleTag, moduleName) {
-    // Open dropdown of disable button is not displayed as first button
+    // Open dropdown if disable button is not displayed as first button
     if (await this.elementNotVisible(page, this.disableModuleButton(moduleName), 1000)) {
       await page.click(this.actionsDropdownButton(moduleName));
     }
@@ -173,6 +173,11 @@ class ModuleManager extends BOBasePage {
    * @return {Promise<string>}
    */
   async enableModule(page, moduleName) {
+    // Open dropdown if enable button is not displayed as first button
+    if (await this.elementNotVisible(page, this.enableModuleButton(moduleName), 1000)) {
+      await page.click(this.actionsDropdownButton(moduleName));
+    }
+
     const [textResult] = await Promise.all([
       this.getGrowlMessageContent(page),
       page.click(this.enableModuleButton(moduleName)),
