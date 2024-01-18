@@ -55,6 +55,10 @@ describe('Front Office', async () => {
         assert.fail('Design seems broken');
       }
     });
+
+    it('attach diff screen', function () {
+      helper.attachDiffScreen(this, contactPage);
+    });
   });
 
   describe('Categories', async () => {
