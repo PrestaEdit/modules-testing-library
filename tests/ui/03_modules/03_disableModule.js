@@ -75,6 +75,11 @@ describe('Disable and enable module', async () => {
     await expect(textResult).to.contain(moduleManagerPage.successfulDisableMessage(moduleData.tag));
   });
 
+  it('shoud reload page if modal not closed properly', async () => {
+    await moduleManagerPage.reloadPage(page);
+    await moduleManagerPage.searchModule(page, moduleData.tag, moduleData.name);
+  });
+
   it('should enable module', async () => {
     const textResult = await moduleManagerPage.enableModule(page, moduleData.name);
 
