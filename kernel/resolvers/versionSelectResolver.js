@@ -2,15 +2,6 @@ const fs = require('fs');
 require('module-alias/register');
 const path = require('path');
 
-/*
-Supported patch versions:
-- 1.7.4.4
-- 1.7.5.2
-- 1.7.6.8
-- 1.7.7.0
-- 1.7.8.0
- */
-
 /**
  * Class to get import needed files for the given version
  * @class
@@ -20,11 +11,28 @@ class VersionSelectResolver {
    * @constructs
    * Creating a resolver
    *
-   * @param {string} version PrestaShop version
+   * @param {string} patchVersion PrestaShop version
    * @param {json} ConfigClassMap Optional parameter for added or override classes
    */
-  constructor(version, ConfigClassMap) {
-    this.version = version;
+  constructor(patchVersion, ConfigClassMap) {
+    this.patchVersion = patchVersion;
+    if (this.patchVersion.length === 7) {
+      this.minorVersion = this.patchVersion.slice(0, 5);
+      if (this.minorVersion.includes('1.7')) {
+        this.majorVersion = '1.7';
+      } else {
+        this.majorVersion = this.minorVersion.slice(0, 1);
+      }
+    } else if (this.patchVersion.length === 5) {
+      this.minorVersion = this.patchVersion.slice(0, 3);
+      if (this.minorVersion.includes('1.7')) {
+        this.majorVersion = '1.7';
+      } else {
+        this.majorVersion = this.minorVersion.slice(0, 1);
+      }
+    } else {
+      throw new Error(`Error with version '${this.patchVersion}'`);
+    }
     this.configClassMap = ConfigClassMap;
   }
 
@@ -50,18 +58,27 @@ class VersionSelectResolver {
     }
 
     // either we don't have the file in configClassMap or we don't have a target for this version
-    const versionForFilepath = this.version.replace(/\./g, '');
+    let versionForFilepath = this.patchVersion;
+
     const basePath = path.resolve(__dirname, '../..');
 
-    if (!fs.existsSync(`${basePath}/versions/${versionForFilepath}`)) {
-      throw new Error(`Couldn't find the folder for version '${this.version}'`);
+    if (fs.existsSync(`${basePath}/versions/${versionForFilepath}/${selector}`)) {
+      return `${basePath}/versions/${versionForFilepath}/${selector}`;
     }
 
-    if (!fs.existsSync(`${basePath}/versions/${versionForFilepath}/${selector}`)) {
-      throw new Error(`Couldn't find the file '${selector}' in version folder '${this.version}'`);
+    versionForFilepath = this.minorVersion;
+
+    if (fs.existsSync(`${basePath}/versions/${versionForFilepath}/${selector}`)) {
+      return `${basePath}/versions/${versionForFilepath}/${selector}`;
     }
 
-    return `${basePath}/versions/${versionForFilepath}/${selector}`;
+    versionForFilepath = this.majorVersion;
+
+    if (fs.existsSync(`${basePath}/versions/${versionForFilepath}/${selector}`)) {
+      return `${basePath}/versions/${versionForFilepath}/${selector}`;
+    }
+
+    throw new Error(`Couldn't find the file '${selector}' in version folder '${this.version}'`);
   }
 
   /**
