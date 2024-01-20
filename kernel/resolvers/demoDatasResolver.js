@@ -14,7 +14,7 @@ class DemoDatasResolver {
    * @param {string} locale Locale
    */
   constructor(locale) {
-    this.version = locale;
+    this.locale = locale;
   }
 
   /**
