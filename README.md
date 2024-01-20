@@ -53,7 +53,7 @@ This module is distributed via [npm](https://www.npmjs.com/) which is bundled wi
 and should be installed as one of your project's devDependencies :
 
 ```
-npm install --save-dev prestashop_test_lib
+npm install --save-dev prestaflow
 ```
 
 ### Available pages
