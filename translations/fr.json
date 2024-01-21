@@ -97,5 +97,8 @@
 	"Disable action on module %s succeeded.": "L'action Disable sur le module %s a réussi.",
 	"Clothes": "Vêtements",
 	"Contact us": "Contactez-nous",
-	"out of": "sur"
+	"out of": "sur",
+	"Manage installed modules": "Manage installed modules",
+	"Module selection": "Module selection",
+	"Marketplace": "Gestionnaire de modules"
 }
