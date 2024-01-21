@@ -62,6 +62,7 @@ describe('Create Standard product in BO and Delete it with DropDown Menu', async
       dashboardPage.productsLink,
     );
 
+    await productsPage.closeSfToolBar(page);
     const pageTitle = await productsPage.getPageTitle(page);
     await expect(pageTitle).to.contains(productsPage.pageTitle);
   });
