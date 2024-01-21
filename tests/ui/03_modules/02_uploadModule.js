@@ -30,7 +30,7 @@ Go to module manager page
 Upload zip module
 Check that module is installed
  */
-describe(`Install module with zip in PrestaShop version ${global.PS_VERSION}`, async () => {
+describe('Install module with zip', async () => {
   // before and after functions
   before(async function () {
     browserContext = await helper.createBrowserContext(this.browser);
@@ -84,7 +84,7 @@ describe(`Install module with zip in PrestaShop version ${global.PS_VERSION}`, a
   });
 
   it('should go to configuration page', async () => {
-    await moduleManagerPage.goToConfigurationPage(page, moduleToInstall.name);
+    await moduleManagerPage.goToConfigurationPage(page, moduleToInstall.tag);
 
     // Check module name
     const pageSubtitle = await moduleConfigurationPage.getPageSubtitle(page);

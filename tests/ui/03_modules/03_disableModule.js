@@ -64,24 +64,24 @@ describe('Disable and enable module', async () => {
   });
 
   it('should check that the module was installed', async () => {
-    const isModuleVisible = await moduleManagerPage.searchModule(page, moduleData.tag, moduleData.name);
+    const isModuleVisible = await moduleManagerPage.searchModule(page, moduleData.tag);
 
     await expect(isModuleVisible).to.be.true;
   });
 
   it('should disable module', async () => {
-    const textResult = await moduleManagerPage.disableModule(page, moduleData.tag, moduleData.name);
+    const textResult = await moduleManagerPage.disableModule(page, moduleData.tag);
 
     await expect(textResult).to.contain(moduleManagerPage.successfulDisableMessage(moduleData.tag));
   });
 
   it('shoud reload page if modal not closed properly', async () => {
     await moduleManagerPage.reloadPage(page);
-    await moduleManagerPage.searchModule(page, moduleData.tag, moduleData.name);
+    await moduleManagerPage.searchModule(page, moduleData.tag);
   });
 
   it('should enable module', async () => {
-    const textResult = await moduleManagerPage.enableModule(page, moduleData.name);
+    const textResult = await moduleManagerPage.enableModule(page, moduleData.tag);
 
     await expect(textResult).to.contain(moduleManagerPage.successfulEnableMessage(moduleData.tag));
   });

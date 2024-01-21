@@ -77,19 +77,19 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should search a module', async () => {
-    const isModuleVisible = await moduleCatalogPage.searchModule(page, moduleToInstall.tag, moduleToInstall.name);
+    const isModuleVisible = await moduleCatalogPage.searchModule(page, moduleToInstall.tag);
 
     await expect(isModuleVisible).to.be.true;
   });
 
   it('should install the module', async () => {
-    const textResult = await moduleCatalogPage.installModule(page, moduleToInstall.name);
+    const textResult = await moduleCatalogPage.installModule(page, moduleToInstall.tag);
 
     await expect(textResult).to.contain(moduleCatalogPage.installMessageSuccessful(moduleToInstall.tag));
   });
 
   it('should go to configuration page', async () => {
-    await moduleCatalogPage.goToConfigurationPage(page, moduleToInstall.name);
+    await moduleCatalogPage.goToConfigurationPage(page, moduleToInstall.tag);
 
     // Check module name
     const pageSubtitle = await moduleConfigurationPage.getPageSubtitle(page);
@@ -118,13 +118,13 @@ describe('Install a module from modules catalog', async () => {
   });
 
   it('should search a module', async () => {
-    const isModuleVisible = await moduleCatalogPage.searchModule(page, moduleToInstall.tag, moduleToInstall.name);
+    const isModuleVisible = await moduleCatalogPage.searchModule(page, moduleToInstall.tag);
 
     await expect(isModuleVisible).to.be.true;
   });
 
   it('should uninstall the module', async () => {
-    const textResult = await moduleCatalogPage.uninstallModule(page, moduleToInstall.tag, moduleToInstall.name);
+    const textResult = await moduleCatalogPage.uninstallModule(page, moduleToInstall.tag);
 
     await expect(textResult).to.contain(moduleCatalogPage.uninstallMessageSuccessful(moduleToInstall.tag));
   });
