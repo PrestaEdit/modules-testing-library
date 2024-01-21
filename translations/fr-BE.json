@@ -19,7 +19,7 @@
 	"Order Messages": "Messages prédéfinis",
 	"Merchandise Returns": "Retours produits",
 	"Manage": "Gestionnaire de modules",
-	"Modules catalog": "Gestionnaire de modules",
+	"Modules catalog": "Marketplace",
 	"Theme & Logo": "Thème et Logo",
 	"Theme": "Theme",
 	"Pages": "Pages",
@@ -27,7 +27,7 @@
 	"Image Settings": "Images",
 	"Carriers": "Transporteurs",
 	"Preferences": "Préférences",
-	"Payment Methods": "Moyens de paiement",
+	"Payment Methods": "Modes de paiement",
 	"Localization": "Localisation",
 	"Zones": "Zones",
 	"Taxes": "Taxes",
@@ -35,7 +35,7 @@
 	"Order Settings": "Paramètres de commande",
 	"Product Settings": "Produits",
 	"Contacts": "Contacts",
-	"SEO & URLs": "SEO et URL",
+	"SEO & URLs": "SEO & URL",
 	"Search": "Recherche",
 	"Information": "Information",
 	"Performance": "Performances",
@@ -100,5 +100,5 @@
 	"out of": "sur",
 	"Manage installed modules": "Manage installed modules",
 	"Module selection": "Module selection",
-	"Marketplace": "Gestionnaire de modules"
+	"Email Theme": "Thème d'email"
 }

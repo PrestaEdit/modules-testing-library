@@ -153,9 +153,9 @@ const menuSelectors = [
         selector: dashboardPage.themeAndLogoLink,
       },
       {
-        pageName: 'Theme',
-        pageTitle: i18n.__('Theme'),
-        selector: dashboardPage.themeCatalog,
+        pageName: 'Email Theme',
+        pageTitle: i18n.__('Email Theme'),
+        selector: dashboardPage.themeMail,
       },
       {
         pageName: 'Pages',
