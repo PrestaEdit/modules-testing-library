@@ -34,7 +34,7 @@ class BOBasePage extends CommonPage {
     this.dashboardLink = '#tab-AdminDashboard';
     // SELL
     // Orders
-    this.ordersParentLink = 'li#subtab-AdminParentOrders';
+    this.ordersParentLink = 'li#maintab-AdminParentOrders';
     this.ordersLink = '#subtab-AdminOrders';
     // Invoices
     this.invoicesLink = '#subtab-AdminInvoices';
@@ -78,7 +78,7 @@ class BOBasePage extends CommonPage {
     // Improve
     // Modules
     this.modulesParentLink = '#subtab-AdminParentModulesSf';
-    this.moduleCatalogueLink = '#subtab-AdminAddonsCatalog, #subtab-AdminParentModulesCatalog';
+    this.moduleCatalogueLink = '#subtab-AdminParentModulesCatalog';
     this.moduleManagerLink = '#subtab-AdminModulesSf';
 
     // Design
@@ -86,12 +86,7 @@ class BOBasePage extends CommonPage {
     // Theme & logo
     this.themeAndLogoLink = '#subtab-AdminThemesParent';
     // Theme Mail
-    this.themeMail = false;
-    if (global.PS_VERSION.includes('1.7.6')
-        || global.PS_VERSION.includes('1.7.7')
-        || global.PS_VERSION.includes('1.7.8')) {
-      this.themeMail = '#subtab-AdminParentMailTheme';
-    }
+    this.themeMail = '#subtab-AdminParentMailTheme';
     // Pages
     this.pagesLink = '#subtab-AdminCmsContent';
     // Positions
@@ -166,7 +161,7 @@ class BOBasePage extends CommonPage {
     // Multistore
     this.multistoreLink = '#subtab-AdminShopGroup';
 
-    this.sideMenuActiveLink = link => `${link}.-active, ${link}.link-active`;
+    this.sideMenuActiveLink = link => `${link}.active`;
 
     // welcome module
     this.onboardingCloseButton = 'button.onboarding-button-shut-down';
@@ -221,13 +216,13 @@ class BOBasePage extends CommonPage {
    * @returns {Promise<void>}
    */
   async goToSubMenu(page, parentSelector, linkSelector) {
-    if (await this.elementNotVisible(page, `${parentSelector}.open`, 1000)) {
+    if (await this.elementNotVisible(page, `${parentSelector}.hover`, 1000)) {
       // open the block
       await this.scrollTo(page, parentSelector);
 
       await Promise.all([
-        page.click(parentSelector),
-        this.waitForVisibleSelector(page, `${parentSelector}.open`),
+        page.hover(parentSelector),
+        this.waitForVisibleSelector(page, `${parentSelector}.hover`),
       ]);
     }
 

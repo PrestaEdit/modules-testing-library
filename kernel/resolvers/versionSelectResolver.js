@@ -16,10 +16,12 @@ class VersionSelectResolver {
    */
   constructor(patchVersion, ConfigClassMap) {
     this.patchVersion = patchVersion;
-    if (this.patchVersion.length === 7) {
+    if (this.patchVersion.length === 7 || this.patchVersion.length === 8) {
       this.minorVersion = this.patchVersion.slice(0, 5);
       if (this.minorVersion.includes('1.7')) {
         this.majorVersion = '1.7';
+      } else if (this.minorVersion.includes('1.6')) {
+        this.majorVersion = '1.6';
       } else {
         this.majorVersion = this.minorVersion.slice(0, 1);
       }
@@ -27,6 +29,8 @@ class VersionSelectResolver {
       this.minorVersion = this.patchVersion.slice(0, 3);
       if (this.minorVersion.includes('1.7')) {
         this.majorVersion = '1.7';
+      } else if (this.minorVersion.includes('1.6')) {
+        this.majorVersion = '1.6';
       } else {
         this.majorVersion = this.minorVersion.slice(0, 1);
       }
@@ -58,7 +62,7 @@ class VersionSelectResolver {
     }
 
     // either we don't have the file in configClassMap or we don't have a target for this version
-    let versionForFilepath = this.patchVersion;
+    let versionForFilepath = this.majorVersion + '/' + this.minorVersion + '/' + this.patchVersion;
 
     const basePath = path.resolve(__dirname, '../..');
 
@@ -66,7 +70,7 @@ class VersionSelectResolver {
       return `${basePath}/versions/${versionForFilepath}/${selector}`;
     }
 
-    versionForFilepath = this.minorVersion;
+    versionForFilepath = this.majorVersion + '/' + this.minorVersion;
 
     if (fs.existsSync(`${basePath}/versions/${versionForFilepath}/${selector}`)) {
       return `${basePath}/versions/${versionForFilepath}/${selector}`;

@@ -56,6 +56,8 @@
 	"Mail alerts": "Alertes par e-mail",
 	"Install action on module %s succeeded.": "L'action Install sur le module %s a réussi.",
 	"Uninstall action on module %s succeeded.": "L'action Uninstall sur le module %s a réussi.",
+	"Enable action on module %s succeeded.": "L'action Enable sur le module %s a réussi.",
+	"Disable action on module %s succeeded.": "L'action Disable sur le module %s a réussi.",
 	"Product successfully deleted.": "Le produit a bien été supprimé.",
 	"Product(s) successfully deleted.": "Le(s) produit(s) a/ont bien été supprimé(s).",
 	"Product successfully deactivated.": "Le produit a bien été désactivé.",
@@ -93,12 +95,10 @@
 	"Active": "Active",
 	"Standard product": "Produit standard",
 	"FR Taux standard (20%)": "FR Taux standard (20%)",
-	"Enable action on module %s succeeded.": "L'action Enable sur le module %s a réussi.",
-	"Disable action on module %s succeeded.": "L'action Disable sur le module %s a réussi.",
 	"Clothes": "Vêtements",
 	"Contact us": "Contactez-nous",
 	"out of": "sur",
-	"Manage installed modules": "Manage installed modules",
+	"Manage installed modules": "Gestionnaire de modules",
 	"Module selection": "Marketplace",
 	"Email Theme": "Thème d'email"
 }

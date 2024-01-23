@@ -26,7 +26,6 @@ class ModuleCatalog extends BOBasePage {
     this.installModuleButton = moduleTag => `${this.moduleBloc(moduleTag)} form>button.module_action_menu_install`;
     this.uninstallModuleButton = moduleTag => `${this.moduleBloc(moduleTag)} div.module-actions .dropdown-item.module_action_menu_uninstall`;
     this.configureModuleButton = moduleTag => `${this.moduleBloc(moduleTag)} div.module-actions a[href*='configure']`;
-
     this.uninstallModal = moduleTag => `#module-modal-confirm-${moduleTag}-uninstall`;
     this.confirmUninstallModalLink = moduleTag => `${this.uninstallModal(moduleTag)} a.module_action_modal_uninstall`;
   }

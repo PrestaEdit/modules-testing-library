@@ -73,13 +73,13 @@ describe('Install module with zip', async () => {
   it('should check that the module was installed', async () => {
     await moduleManagerPage.closeUploadModuleModal(page);
     await moduleManagerPage.reloadPage(page);
-    const isModuleVisible = await moduleManagerPage.searchModule(page, moduleToInstall.tag, moduleToInstall.name);
+    const isModuleVisible = await moduleManagerPage.searchModule(page, moduleToInstall.tag);
 
     await expect(isModuleVisible).to.be.true;
   });
 
   it('should check that the module is enabled', async () => {
-    const isModuleEnabled = await moduleManagerPage.isModuleEnabled(page, moduleToInstall.name);
+    const isModuleEnabled = await moduleManagerPage.isModuleEnabled(page, moduleToInstall.tag);
     await expect(isModuleEnabled).to.be.true;
   });
 

@@ -1,5 +1,5 @@
 const i18n = require('i18n');
-const BOBasePage = require('../../../8/BO/BObasePage.js');
+const BOBasePage = require('../../../../BO/BObasePage.js');
 
 /**
  * BO dashboard page

@@ -137,8 +137,8 @@ const menuSelectors = [
         selector: dashboardPage.moduleManagerLink,
       },
       {
-        pageName: 'Modules catalog',
-        pageTitle: i18n.__('Modules catalog'),
+        pageName: 'Marketplace',
+        pageTitle: i18n.__('Module selection'),
         selector: dashboardPage.moduleCatalogueLink,
       },
     ],
